@@ -9,48 +9,29 @@
         <link rel="stylesheet" href="style.css">
         <title>Cadastro</title>
         <style>
-           
-            .exibir_dados{ 
-                display: flex;
-                justify-content: center;
-                
-            }
+        
             body{
                 background-color:#f3f3f3;
+               
+            }
+            .arrumar{
+                 overflow-x: hidden;
             }
             .exibir_dados_container{
-                width: 50%;
-               
+                width: 50%;  
             }
-            .exibir_dados_fundo{
-                padding: 10px 15px;
-                margin: 0;
-            }
-           
-           
-            .tabela_dados{
+            .alinhamento{
                 display: flex;
                 justify-content: center;
+                text-align: center;
             }
-           
-            .exibir_dados_info{
-                font-weight: bold;
-                list-style: none;
-               display: flex;
-               flex-direction: row;
-               justify-content: space-between;
-               
-            }
-            ul, li{
-                padding: 0;
-                margin: 0;
-            }
+            
         </style>
     </head>
     <body>
         <main id="teste.classe">
-            <div class="container" style="background-color: white; padding: 0;">
-                <div class="row">
+            <div class="container arrumar" style="background-color: white; padding: 0;">
+                <div class="row arrumar">
                     <div class="col">
                     <header>
             
@@ -74,86 +55,78 @@
                             </div>
                             </div>
                         </nav>
+                     
                     </header>
                     <br>
-                    <div class="exibir_dados">
+                    <div class="alinhamento">
+                    
                         <div class="exibir_dados_container">
-                            <p class="fs-5 " style="color: black;  margin-bottom: 10px;">Consultar - Contatos Agendados</p> 
-                            <div class="exibir_dados_fundo bg-primary">
-                            <ul class="exibir_dados_info">
-                                    <li class='text-break'>Nome</li>
-                                    <li class='text-break'>Telefone</li>
-                                    <li class='text-break'>Origem</li>
-                                    <li class='text-break'>Contato</li>
-                                    <li class='text-break'>Observação</li>
-                                    <li class='text-break'>Ação</li>
-                                </ul>
-                            
-                                
-                            </div>
+                        <p class="fs-5 fw-semibold" style="color: black;  margin-bottom: 10px; text-align: start;">Consultar - Contatos Agendados</p> 
+                        <div class="table-responsive ">
+                        <table class="table align-middle">
+                            <thead class="bg-primary">
+                            <tr>
+                                <th  scope="col">Nome</th>
+                                <th  scope="col">Telefone</th>
+                                <th  scope="col">Origem</th>
+                                <th  scope="col">Contato</th>
+                                <th  scope="col">Observação</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                           
+                            <tr>
+                                <td>
+                                    <?php
+                                        require_once("pessoa.class.php");
+                                        $pessoa = new Pessoa();
+                                        $pessoa->setNome($_POST['nome']);
+                                        echo  $pessoa->getNome();
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        require_once("pessoa.class.php");
+                                        $pessoa = new Pessoa();
+                                        $pessoa->setTelefone($_POST['telefone']);
+                                        echo $pessoa->getTelefone();
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        require_once("pessoa.class.php");
+                                        $pessoa = new Pessoa();
+                                        $pessoa->setOrigem($_POST['origem']);
+                                        echo $pessoa->getOrigem();
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $pessoa->setData($_POST['date']);
+                                        echo $pessoa->getData();
+                                    ?>
+                                </td>
+                                <td><?php
+                                        require_once("pessoa.class.php");
+                                        $pessoa = new Pessoa();
+                                        $pessoa->setObservacao($_POST['obs']);
+                                        echo $pessoa->getObservacao();
+                                    ?></td>
+                                <td>
+                                    0000
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                         </div>
-                        
+                        </div>
                     </div>
                     
                     </div>
                 </div>
-                <?php
+                
 
-                                require_once("pessoa.class.php");
-
-                                class Teste{
-                                    private $pessoa;
-
-                                    public function __construct(){
-                                        $pessoa = new Pessoa();
-                                        echo "<div class='tabela_dados'>";
-                                        echo "<div style='width: 48%;'>";         
-                                        echo "<div class='row' style='margin-bottom: 30px; text-align: start;'>";
-                                        echo "<div class='col border' style='padding: 0;'>";
-                                        echo "<div>";
-                                        $pessoa->setNome($_POST['nome']);
-                                        echo  $pessoa->getNome();
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "<div class='col border' style='padding: 0;'>";
-                                        echo "<div>";
-                                        $pessoa->setTelefone($_POST['telefone']);
-                                        echo $pessoa->getTelefone();
-                                        echo "</div>";
-                                        echo "</div>";    
-                                        echo "<div class='col border' style='padding: 0;'>"; 
-                                        echo "<div>"; 
-                                        $pessoa->setOrigem($_POST['origem']);
-                                        echo $pessoa->getOrigem();
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "<div class='col border' style='padding: 0;'>";
-                                        echo "<div>";
-                                        $pessoa->setData($_POST['date']);
-                                        echo $pessoa->getData();
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "<div class='col-3 border' style='padding: 0;'>";
-                                        echo "<div>";
-                                        $pessoa->setObservacao($_POST['obs']);
-                                        echo $pessoa->getObservacao();
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "<div class='col-1 border' style='padding: 0;'>";
-                                        echo "<div>";
-                                        echo "0";
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "</div>";
-                                        echo "<div>";
-                                      
-                                       
-
-                                    }
-                                }new Teste();
-                                
-                            ?>
                             
                         <br>       
             </div>
